@@ -3,6 +3,16 @@
 import Link from "next/link"; //31.4k (gzipped: 9.1k)
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+    ChatBubbleLeftIcon,
+    ChevronDownIcon,
+    HomeIcon,
+    PaperAirplaneIcon,
+    PhoneIcon,
+    PlayCircleIcon,
+} from "@heroicons/react/20/solid";
+import {Dialog, Disclosure, Popover, Transition} from "@headlessui/react";
+
 function Header() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -34,7 +44,18 @@ function Header() {
                 </button>
             </div>
             
-            
+            <Popover.Group className="hidden lg:flex lg:gap-x-12">
+                <Popover className="relative">
+                    <Popover.Button className="flex items-center gpa-x-1 text-sm font-semibold leading-6 text-white">
+                        Stays
+                        <ChevronDownIcon
+                            className="h-5 w-5 flex-none text-white"
+                            aria-hidden="true"
+                        />
+                    </Popover.Button>
+
+                </Popover>
+            </Popover.Group>
 
         </nav>
     </header>
