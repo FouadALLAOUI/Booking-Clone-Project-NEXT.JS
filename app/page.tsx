@@ -16,7 +16,7 @@ export default function Home() {
         {/* SearchForm */}
       </section>
 
-      <section className="mx-auto max-w-7xl mt-10 p-6 bg-hite rounded-t-lg">
+      <section className="mx-auto max-w-7xl mt-10 p-6 bg-white rounded-t-lg">
         <div className="pt-5">
           <h3 className="text-xl font-bold">Trending Destinations</h3>
           <p>
@@ -39,13 +39,7 @@ export default function Home() {
             </div>
           ))}            
         </div>
-
-
       </section>
-
-
-
-
     </main>
   );
 }
