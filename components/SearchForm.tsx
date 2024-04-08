@@ -1,5 +1,8 @@
 'use client'
 
+import {zodResolver} from "@hookform/resolvers/zod";
+import { useRouter } from "next/router"
+import { useForm } from "react-hook-form";
 import * as z from "zod"
 
 export const formSchema = z.object({
@@ -23,6 +26,12 @@ export const formSchema = z.object({
 
 
 function SearchForm() {
+    const router= useRouter();
+
+    const form =  useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+    })
+
   return (
     <div>
         
