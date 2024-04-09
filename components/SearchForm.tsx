@@ -9,7 +9,6 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -60,6 +59,37 @@ function SearchForm() {
     });
 
     function onSubmit(values: z.infer<typeof formSchema>){
+        console.log(values);
+
+        const checkin_monthday = values.dates.from.getDate().toString();
+        const checkin_month = (values.dates.from.getMonth()+1).toString();
+        const checkin_year = values.dates.from.getFullYear().toString();
+        const checkout_monthday = values.dates.to.getDate().toString();
+        const checkout_month = (values.dates.to.getMonth()+1).toString();
+        const checkout_year = values.dates.to.getFullYear().toString();
+
+        const checkin = `${checkin_year}-${checkin_month}-${checkin_monthday}`;
+        const checkout = `${checkout_year}-${checkout_month}-${checkout_monthday}`;
+
+        const url = new URL("https://www.booking.com/searchresults.en-gb.html");
+        url.searchParams.set("ss", values.location);
+        url.searchParams.set("group_adults", values.adults);
+        url.searchParams.set("group_children", values.children);
+        url.searchParams.set("no_rooms", values.rooms);
+        url.searchParams.set("checkin", checkin);
+        url.searchParams.set("checkout", checkout);
+        
+        router.push(`/search?url=${url.href}`)
+        
+
+
+
+
+
+       /**
+       https://www.booking.com/searchresults.en-gb.html?ss=London&ssne=London&ssne_untouched=London&label=pc-ma-booking-booking-sd-iraz&sid=26f5734b485393b8b4aff66c6915683b&aid=348858&lang=en-gb&sb=1&src_elem=sb&src=searchresults&dest_id=-2601889&dest_type=city&checkin=2024-05-01&checkout=2024-05-31&group_adults=2&no_rooms=1&group_children=0&sb_travel_purpose=leisure      
+        * 
+        */
 
     }
 
@@ -79,9 +109,7 @@ function SearchForm() {
                                 Location 
                                 <BedDoubleIcon className="ml-2 h-4 w-4 text-white"/>
                             </FormLabel>
-
                             <FormMessage/>
-
                             <FormControl>
                                 <Input placeholder="London, UK" {...field}/>
                             </FormControl>
@@ -195,6 +223,13 @@ function SearchForm() {
                     />
 
                 </div>
+                    
+                <div className="mt-auto">
+                    <Button type="submit" className="bg-blue-500 text-base">
+                        Search
+                    </Button>
+                </div>
+
             </div>  
 
         </form>
