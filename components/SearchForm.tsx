@@ -1,7 +1,7 @@
 'use client'
 
 import {zodResolver} from "@hookform/resolvers/zod";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button"
@@ -42,7 +42,7 @@ export const formSchema = z.object({
 
 
 function SearchForm() {
-    //const router= useRouter();
+    const router= useRouter();
 
     const form =  useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -79,13 +79,7 @@ function SearchForm() {
         url.searchParams.set("checkin", checkin);
         url.searchParams.set("checkout", checkout);
         
-        router.push(`/search?url=${url.href}`)
-        
-
-
-
-
-
+        router.push(`/search?url=${url.href}`);
        /**
        https://www.booking.com/searchresults.en-gb.html?ss=London&ssne=London&ssne_untouched=London&label=pc-ma-booking-booking-sd-iraz&sid=26f5734b485393b8b4aff66c6915683b&aid=348858&lang=en-gb&sb=1&src_elem=sb&src=searchresults&dest_id=-2601889&dest_type=city&checkin=2024-05-01&checkout=2024-05-31&group_adults=2&no_rooms=1&group_children=0&sb_travel_purpose=leisure      
         * 
